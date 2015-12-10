@@ -20,18 +20,13 @@ public class ExamenRefact {
         {
             int digitos = 3;
             int numerodigitos = 0;
-            if (digitos <= 0) {
-                System.out.println("Ingrese como parámetro, un numero de digitos correcto (mayor que 0): ");
-            }
+            PedirNumeroDigitos(digitos);
             for (int i = 1; i <= 99999; i++) {
                 int auxiliar = i;
 
                 int contador = 0;
 
-                while (auxiliar != 0) {
-                    auxiliar = auxiliar / 10;
-                    contador++;
-                }
+                contador = Contador(auxiliar, contador);
                 numerodigitos = contador;
 
                 if (numerodigitos == digitos) {
@@ -48,15 +43,7 @@ public class ExamenRefact {
                                 k--;
                             }
 
-                            while (i1 <= k) {
-                                if (i % i1 == 0) {
-                                    contador1++;
-                                }
-                                i1 += 2;
-                                if (contador1 == 2) {
-                                    i1 = k + 1;
-                                }
-                            }
+                            contador1 = NumerosPrimos(i1, k, i, contador1);
 
                             if (contador1 == 1) {
                                 p = true;
@@ -71,5 +58,32 @@ public class ExamenRefact {
             }
         }
 
+    }
+
+    public static int NumerosPrimos(int i1, int k, int i, int contador1) {
+        while (i1 <= k) {
+            if (i % i1 == 0) {
+                contador1++;
+            }
+            i1 += 2;
+            if (contador1 == 2) {
+                i1 = k + 1;
+            }
+        }
+        return contador1;
+    }
+
+    public static int Contador(int auxiliar, int contador) {
+        while (auxiliar != 0) {
+            auxiliar = auxiliar / 10;
+            contador++;
+        }
+        return contador;
+    }
+
+    public static void PedirNumeroDigitos(int digitos) {
+        if (digitos <= 0) {
+            System.out.println("Ingrese como parámetro, un numero de digitos correcto (mayor que 0): ");
+        }
     }
 }
